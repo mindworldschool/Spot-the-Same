@@ -1,0 +1,472 @@
+{
+  "version": "1.0",
+  "generated_at": "2025-11-12T09:33:38.646942Z",
+  "base_path": "symbols/",
+  "count": 58,
+  "items": [
+    {
+      "id": "book",
+      "name": "book",
+      "src_webp": "symbols/book.webp",
+      "src_original": "book.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "brain",
+      "name": "brain",
+      "src_webp": "symbols/brain.webp",
+      "src_original": "brain.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "brainwavesl",
+      "name": "brainwavesl",
+      "src_webp": "symbols/brainwavesl.webp",
+      "src_original": "brainwavesl.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "bulb",
+      "name": "bulb",
+      "src_webp": "symbols/bulb.webp",
+      "src_original": "bulb.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "cake",
+      "name": "cake",
+      "src_webp": "symbols/cake.webp",
+      "src_original": "cake.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "abacus",
+      "name": "abacus",
+      "src_webp": "symbols/abacus.webp",
+      "src_original": "abacus.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "backpack",
+      "name": "backpack",
+      "src_webp": "symbols/backpack.webp",
+      "src_original": "backpack.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "ball",
+      "name": "ball",
+      "src_webp": "symbols/ball.webp",
+      "src_original": "ball.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "bell",
+      "name": "bell",
+      "src_webp": "symbols/bell.webp",
+      "src_original": "bell.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "bird",
+      "name": "bird",
+      "src_webp": "symbols/bird.webp",
+      "src_original": "bird.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "donut",
+      "name": "donut",
+      "src_webp": "symbols/donut.webp",
+      "src_original": "donut.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "ear",
+      "name": "ear",
+      "src_webp": "symbols/ear.webp",
+      "src_original": "ear.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "Earth",
+      "name": "Earth",
+      "src_webp": "symbols/Earth.webp",
+      "src_original": "Earth.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "elephant",
+      "name": "elephant",
+      "src_webp": "symbols/elephant.webp",
+      "src_original": "elephant.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "calculato",
+      "name": "calculato",
+      "src_webp": "symbols/calculato.webp",
+      "src_original": "calculato.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "cat",
+      "name": "cat",
+      "src_webp": "symbols/cat.webp",
+      "src_original": "cat.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "chalk",
+      "name": "chalk",
+      "src_webp": "symbols/chalk.webp",
+      "src_original": "chalk.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "chameleon",
+      "name": "chameleon",
+      "src_webp": "symbols/chameleon.webp",
+      "src_original": "chameleon.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "clock",
+      "name": "clock",
+      "src_webp": "symbols/clock.webp",
+      "src_original": "clock.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "cloud",
+      "name": "cloud",
+      "src_webp": "symbols/cloud.webp",
+      "src_original": "cloud.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "hat",
+      "name": "hat",
+      "src_webp": "symbols/hat.webp",
+      "src_original": "hat.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "heart",
+      "name": "heart",
+      "src_webp": "symbols/heart.webp",
+      "src_original": "heart.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "eye",
+      "name": "eye",
+      "src_webp": "symbols/eye.webp",
+      "src_original": "eye.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "feather_pen",
+      "name": "feather_pen",
+      "src_webp": "symbols/feather_pen.webp",
+      "src_original": "feather_pen.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "flag",
+      "name": "flag",
+      "src_webp": "symbols/flag.webp",
+      "src_original": "flag.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "flashcard",
+      "name": "flashcard",
+      "src_webp": "symbols/flashcard.webp",
+      "src_original": "flashcard.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "flower",
+      "name": "flower",
+      "src_webp": "symbols/flower.webp",
+      "src_original": "flower.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "fox",
+      "name": "fox",
+      "src_webp": "symbols/fox.webp",
+      "src_original": "fox.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "glass",
+      "name": "glass",
+      "src_webp": "symbols/glass.webp",
+      "src_original": "glass.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "globe",
+      "name": "globe",
+      "src_webp": "symbols/globe.webp",
+      "src_original": "globe.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "monkey",
+      "name": "monkey",
+      "src_webp": "symbols/monkey.webp",
+      "src_original": "monkey.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "heart_5",
+      "name": "heart_5",
+      "src_webp": "symbols/heart_5.webp",
+      "src_original": "heart_5.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "hello",
+      "name": "hello",
+      "src_webp": "symbols/hello.webp",
+      "src_original": "hello.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "hourglass",
+      "name": "hourglass",
+      "src_webp": "symbols/hourglass.webp",
+      "src_original": "hourglass.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "key",
+      "name": "key",
+      "src_webp": "symbols/key.webp",
+      "src_original": "key.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "laptop",
+      "name": "laptop",
+      "src_webp": "symbols/laptop.webp",
+      "src_original": "laptop.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "letters",
+      "name": "letters",
+      "src_webp": "symbols/letters.webp",
+      "src_original": "letters.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "medal",
+      "name": "medal",
+      "src_webp": "symbols/medal.webp",
+      "src_original": "medal.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "microphone",
+      "name": "microphone",
+      "src_webp": "symbols/microphone.webp",
+      "src_original": "microphone.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "mobile",
+      "name": "mobile",
+      "src_webp": "symbols/mobile.webp",
+      "src_original": "mobile.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "puzzle",
+      "name": "puzzle",
+      "src_webp": "symbols/puzzle.webp",
+      "src_original": "puzzle.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "number_5",
+      "name": "number_5",
+      "src_webp": "symbols/number_5.webp",
+      "src_original": "number_5.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "number_10",
+      "name": "number_10",
+      "src_webp": "symbols/number_10.webp",
+      "src_original": "number_10.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "orange_man",
+      "name": "orange_man",
+      "src_webp": "symbols/orange_man.webp",
+      "src_original": "orange_man.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "owl",
+      "name": "owl",
+      "src_webp": "symbols/owl.webp",
+      "src_original": "owl.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "pencil",
+      "name": "pencil",
+      "src_webp": "symbols/pencil.webp",
+      "src_original": "pencil.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "pillow",
+      "name": "pillow",
+      "src_webp": "symbols/pillow.webp",
+      "src_original": "pillow.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "plus",
+      "name": "plus",
+      "src_webp": "symbols/plus.webp",
+      "src_original": "plus.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "popcorn",
+      "name": "popcorn",
+      "src_webp": "symbols/popcorn.webp",
+      "src_original": "popcorn.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "present",
+      "name": "present",
+      "src_webp": "symbols/present.webp",
+      "src_original": "present.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "rainbow",
+      "name": "rainbow",
+      "src_webp": "symbols/rainbow.webp",
+      "src_original": "rainbow.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "rocket",
+      "name": "rocket",
+      "src_webp": "symbols/rocket.webp",
+      "src_original": "rocket.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "scissors",
+      "name": "scissors",
+      "src_webp": "symbols/scissors.webp",
+      "src_original": "scissors.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "smile",
+      "name": "smile",
+      "src_webp": "symbols/smile.webp",
+      "src_original": "smile.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "speech_bubble",
+      "name": "speech_bubble",
+      "src_webp": "symbols/speech_bubble.webp",
+      "src_original": "speech_bubble.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "star",
+      "name": "star",
+      "src_webp": "symbols/star.webp",
+      "src_original": "star.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "sun",
+      "name": "sun",
+      "src_webp": "symbols/sun.webp",
+      "src_original": "sun.png",
+      "width": 1024,
+      "height": 1024
+    },
+    {
+      "id": "tablet",
+      "name": "tablet",
+      "src_webp": "symbols/tablet.webp",
+      "src_original": "tablet.png",
+      "width": 1024,
+      "height": 1024
+    }
+  ]
+}

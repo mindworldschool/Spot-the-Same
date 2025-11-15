@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Spot the Same - MindWorld School</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Экран загрузки -->
+  <div id="loading-screen" class="screen">
+    <div class="loading-content">
+      <div class="loader"></div>
+      <p class="loading-text">Загрузка...</p>
+    </div>
+  </div>
+
+  <!-- Главное меню -->
+  <div id="menu-screen" class="screen hidden">
+    <header class="game-header">
+      <h1 class="game-title">Spot the Same</h1>
+      <p class="game-subtitle">MindWorld School</p>
+    </header>
+
+    <main class="setup-screen">
+      <div class="setup-section">
+        <h3>Количество игроков</h3>
+        <div class="setup-buttons">
+          <button class="btn active" data-players="1">1</button>
+          <button class="btn" data-players="2">2</button>
+          <button class="btn" data-players="3">3</button>
+          <button class="btn" data-players="4">4</button>
+        </div>
+      </div>
+
+      <div class="setup-section">
+        <h3>Сложность</h3>
+        <div class="setup-buttons">
+          <button class="btn" data-difficulty="easy">
+            Легко<br><small>13 карт • 4 символа</small>
+          </button>
+          <button class="btn active" data-difficulty="medium">
+            Средне<br><small>31 карта • 6 символов</small>
+          </button>
+          <button class="btn" data-difficulty="hard">
+            Сложно<br><small>55 карт • 8 символов</small>
+          </button>
+        </div>
+      </div>
+
+      <button class="btn-primary btn-start">Начать игру</button>
+    </main>
+  </div>
+
+  <!-- Игровой экран -->
+  <div id="game-screen" class="screen hidden">
+    <!-- Информационная панель ВВЕРХУ -->
+    <div class="game-info">
+      <!-- Ліворуч: Лічильник карт -->
+      <div class="info-left">
+        <span class="cards-remaining">Залишилось: <strong id="cards-remaining">0</strong></span>
+      </div>
+      
+      <!-- Посередині: Таймер (для 1 гравця) або Панель гравців (для 2-4) -->
+      <div class="info-center">
+        <span class="timer hidden" id="timer-display">⏱️ <strong>60</strong></span>
+        <div class="players-scores-top hidden" id="players-scores-top">
+          <!-- Гравці додаються через JS -->
+        </div>
+      </div>
+      
+      <!-- Праворуч: Кнопки -->
+      <div class="info-right">
+        <button class="btn-icon btn-pause" aria-label="Пауза" title="Пауза">⏸</button>
+        <button class="btn-icon btn-exit" aria-label="Вийти" title="Вийти">✖</button>
+      </div>
+    </div>
+
+    <!-- Игровое поле -->
+    <div class="game-board" id="game-board">
+      <!-- Карти додаються через JS -->
+    </div>
+  </div>
+
+  <!-- Экран результатов -->
+  <div id="results-screen" class="screen hidden">
+    <div class="results-content">
+      <h2 class="results-title">Игра окончена!</h2>
+      
+      <!-- Результаты для 1 игрока -->
+      <div class="solo-results hidden" id="solo-results">
+        <div class="stat-card">
+          <span class="stat-label">Собрано карт</span>
+          <span class="stat-value" id="solo-cards">0</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">Время</span>
+          <span class="stat-value" id="solo-time">0:00</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">Точность</span>
+          <span class="stat-value" id="solo-accuracy">100%</span>
+        </div>
+      </div>
+
+      <!-- Результаты для 2+ игроков -->
+      <div class="multi-results hidden" id="multi-results">
+        <div class="winners-podium" id="winners-podium">
+          <!-- Генерируется JS -->
+        </div>
+      </div>
+
+      <div class="results-actions">
+        <button class="btn-primary btn-play-again">Играть снова</button>
+        <button class="btn-secondary btn-menu">В меню</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Модальное окно паузы -->
+  <div id="pause-modal" class="modal hidden">
+    <div class="modal-content">
+      <h3>Пауза</h3>
+      <button class="btn-primary btn-resume">Продолжить</button>
+      <button class="btn-secondary btn-exit-game">Выйти в меню</button>
+    </div>
+  </div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
