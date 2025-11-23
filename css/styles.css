@@ -692,13 +692,21 @@ body {
 /* Дуже великі екрани (2560px+) */
 @media (min-width: 2560px) {
   :root {
-    --card-size: 500px;
-    --card-size-player: 500px;
+    --card-size: 550px;
+    --card-size-player: 550px;
   }
 }
 
-/* Великі екрани (1920px+) */
-@media (min-width: 1920px) and (max-width: 2559px) {
+/* 2K екрани (2048px-2559px) */
+@media (min-width: 2048px) and (max-width: 2559px) {
+  :root {
+    --card-size: 480px;
+    --card-size-player: 480px;
+  }
+}
+
+/* Великі екрани (1920px-2047px) */
+@media (min-width: 1920px) and (max-width: 2047px) {
   :root {
     --card-size: 420px;
     --card-size-player: 420px;
