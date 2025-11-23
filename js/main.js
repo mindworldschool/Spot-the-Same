@@ -259,13 +259,45 @@ function initGameControls() {
   if (exitButton) {
     exitButton.addEventListener('click', () => {
       console.log('🚪 Exit clicked');
-      if (confirm('Вийти з гри?')) {
-        exitGame();
-      }
+      showExitModal();
     });
   }
-  
+
   console.log('✅ Game controls initialized');
+}
+
+/**
+ * Показати модальне вікно підтвердження виходу
+ */
+function showExitModal() {
+  const modal = document.getElementById('exit-modal');
+  if (!modal) return;
+
+  if (appState.game) {
+    appState.game.state.isPaused = true;
+  }
+
+  modal.classList.remove('hidden');
+
+  // Кнопка "Так, вийти"
+  const confirmButton = modal.querySelector('.btn-exit-confirm');
+  if (confirmButton) {
+    confirmButton.onclick = () => {
+      modal.classList.add('hidden');
+      exitGame();
+    };
+  }
+
+  // Кнопка "Скасувати"
+  const cancelButton = modal.querySelector('.btn-exit-cancel');
+  if (cancelButton) {
+    cancelButton.onclick = () => {
+      modal.classList.add('hidden');
+      if (appState.game) {
+        appState.game.state.isPaused = false;
+      }
+    };
+  }
 }
 
 /**

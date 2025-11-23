@@ -45,7 +45,9 @@ export const translations = {
     loading: "Завантаження...",
 
     // Confirmations
-    exitConfirm: "Вийти з гри?",
+    exitConfirmTitle: "Вийти з гри?",
+    exitConfirm: "Так, вийти",
+    exitCancel: "Скасувати",
     correctAnswers: "Правильних відповідей",
     wrongAnswers: "Помилкових",
     cards: "карт",
@@ -96,7 +98,9 @@ export const translations = {
     loading: "Loading...",
 
     // Confirmations
-    exitConfirm: "Exit game?",
+    exitConfirmTitle: "Exit game?",
+    exitConfirm: "Yes, exit",
+    exitCancel: "Cancel",
     correctAnswers: "Correct answers",
     wrongAnswers: "Wrong answers",
     cards: "cards",
@@ -147,7 +151,9 @@ export const translations = {
     loading: "Загрузка...",
 
     // Confirmations
-    exitConfirm: "Выйти из игры?",
+    exitConfirmTitle: "Выйти из игры?",
+    exitConfirm: "Да, выйти",
+    exitCancel: "Отмена",
     correctAnswers: "Правильных ответов",
     wrongAnswers: "Ошибок",
     cards: "карт",
@@ -198,7 +204,9 @@ export const translations = {
     loading: "Cargando...",
 
     // Confirmations
-    exitConfirm: "¿Salir del juego?",
+    exitConfirmTitle: "¿Salir del juego?",
+    exitConfirm: "Sí, salir",
+    exitCancel: "Cancelar",
     correctAnswers: "Respuestas correctas",
     wrongAnswers: "Errores",
     cards: "cartas",
