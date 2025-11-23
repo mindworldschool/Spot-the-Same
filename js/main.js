@@ -15,7 +15,7 @@ const appState = {
   config: {
     players: 1,
     difficulty: 'medium',
-    timer: null
+    moveTime: 60 // seconds for single player move
   },
   assets: null,
   game: null
@@ -125,7 +125,23 @@ async function loadAssets() {
  */
 function initMenu() {
   console.log('🎛️ Initializing menu...');
-  
+
+  // Timer slider elements
+  const timerSection = document.getElementById('timer-section');
+  const timerSlider = document.getElementById('timer-slider');
+  const timerValue = document.getElementById('timer-value');
+
+  // Update timer section visibility based on player count
+  function updateTimerVisibility() {
+    if (timerSection) {
+      if (appState.config.players === 1) {
+        timerSection.classList.remove('disabled');
+      } else {
+        timerSection.classList.add('disabled');
+      }
+    }
+  }
+
   // Кнопки вибору кількості гравців
   const playerButtons = document.querySelectorAll('[data-players]');
   playerButtons.forEach(btn => {
@@ -134,9 +150,10 @@ function initMenu() {
       btn.classList.add('active');
       appState.config.players = parseInt(btn.dataset.players);
       console.log(`👥 Players selected: ${appState.config.players}`);
+      updateTimerVisibility();
     });
   });
-  
+
   // Кнопки вибору складності
   const difficultyButtons = document.querySelectorAll('[data-difficulty]');
   difficultyButtons.forEach(btn => {
@@ -147,7 +164,25 @@ function initMenu() {
       console.log(`🎯 Difficulty selected: ${appState.config.difficulty}`);
     });
   });
-  
+
+  // Timer slider
+  if (timerSlider && timerValue) {
+    timerSlider.addEventListener('input', () => {
+      const seconds = parseInt(timerSlider.value);
+      appState.config.moveTime = seconds;
+
+      // Format display
+      if (seconds === 0) {
+        timerValue.textContent = '∞';
+      } else {
+        const mins = Math.floor(seconds / 60);
+        const secs = seconds % 60;
+        timerValue.textContent = `${mins}:${secs.toString().padStart(2, '0')}`;
+      }
+      console.log(`⏱️ Move time selected: ${seconds}s`);
+    });
+  }
+
   // Кнопка "Начать игру"
   const startButton = document.querySelector('.btn-start');
   if (startButton) {
@@ -155,7 +190,10 @@ function initMenu() {
   } else {
     console.warn('⚠️ Start button not found');
   }
-  
+
+  // Initial timer visibility
+  updateTimerVisibility();
+
   console.log('✅ Menu initialized');
 }
 
@@ -184,6 +222,7 @@ async function startGame() {
     appState.game = new Game({
       players: appState.config.players,
       difficulty: appState.config.difficulty,
+      moveTime: appState.config.moveTime,
       assets: appState.assets,
       lang: appState.currentLang
     });

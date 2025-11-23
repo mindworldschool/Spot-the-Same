@@ -65,21 +65,51 @@ export class CardRenderer {
     const radius = cardSize * 0.35; // Відстань від центру
     const positions = [];
 
-    for (let i = 0; i < count; i++) {
-      const angle = (i * 360 / count - 90) * Math.PI / 180;
-      
-      // Додаємо випадкове зміщення для природнішого вигляду
-      const randomOffset = {
-        x: (Math.random() - 0.5) * 20,
-        y: (Math.random() - 0.5) * 20
-      };
-
+    // For hard mode (8 symbols): place one in center, 7 around
+    if (count === 8) {
+      // First symbol in center with random rotation and scale
       positions.push({
-        x: center + radius * Math.cos(angle) + randomOffset.x,
-        y: center + radius * Math.sin(angle) + randomOffset.y,
+        x: center + (Math.random() - 0.5) * 10,
+        y: center + (Math.random() - 0.5) * 10,
         rotation: Math.random() * 360,
-        scale: 0.75 + Math.random() * 0.75 // 0.75 - 1.5x (збільшено розкид)
+        scale: 0.8 + Math.random() * 0.5 // 0.8 - 1.3x for center
       });
+
+      // Remaining 7 symbols around the edge
+      for (let i = 0; i < 7; i++) {
+        const angle = (i * 360 / 7 - 90) * Math.PI / 180;
+
+        // Додаємо випадкове зміщення для природнішого вигляду
+        const randomOffset = {
+          x: (Math.random() - 0.5) * 15,
+          y: (Math.random() - 0.5) * 15
+        };
+
+        positions.push({
+          x: center + radius * Math.cos(angle) + randomOffset.x,
+          y: center + radius * Math.sin(angle) + randomOffset.y,
+          rotation: Math.random() * 360,
+          scale: 0.7 + Math.random() * 0.6 // 0.7 - 1.3x
+        });
+      }
+    } else {
+      // Standard positioning for other counts
+      for (let i = 0; i < count; i++) {
+        const angle = (i * 360 / count - 90) * Math.PI / 180;
+
+        // Додаємо випадкове зміщення для природнішого вигляду
+        const randomOffset = {
+          x: (Math.random() - 0.5) * 20,
+          y: (Math.random() - 0.5) * 20
+        };
+
+        positions.push({
+          x: center + radius * Math.cos(angle) + randomOffset.x,
+          y: center + radius * Math.sin(angle) + randomOffset.y,
+          rotation: Math.random() * 360,
+          scale: 0.75 + Math.random() * 0.75 // 0.75 - 1.5x (збільшено розкид)
+        });
+      }
     }
 
     return positions;

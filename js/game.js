@@ -16,6 +16,7 @@ export class Game {
   constructor(config) {
     this.config = config;
     this.lang = config.lang || 'ua';
+    this.moveTime = config.moveTime || 60; // seconds for single player move
     this.state = {
       players: config.players,
       difficulty: config.difficulty,
@@ -25,10 +26,12 @@ export class Game {
       scores: [],
       isPaused: false,
       isGameOver: false,
-      timer: null,
+      timerInterval: null,
+      timeRemaining: this.moveTime,
       timeElapsed: 0,
       correctClicks: 0,
       wrongClicks: 0,
+      moveExpired: false, // Track if current move timed out
       roundState: {
         selectedPlayerCard: null,
         selectedSymbolId: null,
@@ -66,12 +69,19 @@ export class Game {
     }));
 
     this.dealInitialCards();
+
+    // Add multiplayer class for minimal spacing
+    if (this.config.players >= 3) {
+      this.board.classList.add(`multiplayer-${this.config.players}`);
+    }
+
     this.renderBoard();
     this.updateCardsRemaining();
-    
+
     // Показуємо таймер або панель гравців
     if (this.config.players === 1) {
       this.showTimer();
+      this.startTimer();
     } else {
       this.renderPlayerScoresTop();
     }
@@ -99,13 +109,97 @@ export class Game {
   showTimer() {
     const timerElement = document.getElementById('timer-display');
     const scoresTop = document.getElementById('players-scores-top');
-    
+
     if (timerElement) {
       timerElement.classList.remove('hidden');
     }
     if (scoresTop) {
       scoresTop.classList.add('hidden');
     }
+
+    this.updateTimerDisplay();
+  }
+
+  /**
+   * Start countdown timer for single player
+   */
+  startTimer() {
+    if (this.config.players !== 1 || this.moveTime === 0) return;
+
+    this.stopTimer();
+    this.state.timeRemaining = this.moveTime;
+    this.state.moveExpired = false;
+    this.updateTimerDisplay();
+
+    this.state.timerInterval = setInterval(() => {
+      if (this.state.isPaused || this.state.isGameOver) return;
+
+      this.state.timeRemaining--;
+      this.updateTimerDisplay();
+
+      if (this.state.timeRemaining <= 0) {
+        this.handleTimerExpired();
+      }
+    }, 1000);
+  }
+
+  /**
+   * Stop the timer
+   */
+  stopTimer() {
+    if (this.state.timerInterval) {
+      clearInterval(this.state.timerInterval);
+      this.state.timerInterval = null;
+    }
+  }
+
+  /**
+   * Reset timer for new move
+   */
+  resetTimer() {
+    this.state.moveExpired = false;
+    this.startTimer();
+  }
+
+  /**
+   * Update timer display
+   */
+  updateTimerDisplay() {
+    const timerElement = document.getElementById('timer-display');
+    if (!timerElement) return;
+
+    const timeStrong = timerElement.querySelector('strong');
+    if (!timeStrong) return;
+
+    if (this.moveTime === 0) {
+      timeStrong.textContent = '∞';
+      timerElement.classList.remove('warning', 'expired');
+      return;
+    }
+
+    const mins = Math.floor(this.state.timeRemaining / 60);
+    const secs = this.state.timeRemaining % 60;
+    timeStrong.textContent = `${mins}:${secs.toString().padStart(2, '0')}`;
+
+    // Add warning class when time is low
+    if (this.state.timeRemaining <= 10 && this.state.timeRemaining > 0) {
+      timerElement.classList.add('warning');
+      timerElement.classList.remove('expired');
+    } else if (this.state.timeRemaining <= 0) {
+      timerElement.classList.add('expired');
+      timerElement.classList.remove('warning');
+    } else {
+      timerElement.classList.remove('warning', 'expired');
+    }
+  }
+
+  /**
+   * Handle when timer expires
+   */
+  handleTimerExpired() {
+    this.stopTimer();
+    this.state.moveExpired = true;
+    console.log('⏰ Time expired! Move will not count.');
   }
 
   renderBoard() {
@@ -250,8 +344,8 @@ export class Game {
     if (this.config.players === 3) {
       container.style.cssText = `
         left: 50%;
-        top: 22%;
-        transform: translate(-50%, 0);
+        top: 28%;
+        transform: translate(-50%, -50%);
       `;
     } else if (this.config.players === 4) {
       container.style.cssText = `
@@ -347,18 +441,18 @@ export class Game {
 
     if (numPlayers === 3) {
       return [
-        { x: 20, y: 70 },
-        { x: 50, y: 70 },
-        { x: 80, y: 70 }
+        { x: 20, y: 72 },
+        { x: 50, y: 72 },
+        { x: 80, y: 72 }
       ];
     }
 
     if (numPlayers === 4) {
       return [
-        { x: 18, y: 35 },
-        { x: 18, y: 72 },
-        { x: 82, y: 35 },
-        { x: 82, y: 72 }
+        { x: 20, y: 28 },
+        { x: 20, y: 72 },
+        { x: 80, y: 28 },
+        { x: 80, y: 72 }
       ];
     }
 
@@ -371,7 +465,7 @@ export class Game {
   calculateCardSize() {
     const board = this.board;
     const boardWidth = board.clientWidth || window.innerWidth;
-    const boardHeight = board.clientHeight || (window.innerHeight - 120);
+    const boardHeight = board.clientHeight || (window.innerHeight - 70);
 
     let cardSize;
 
@@ -382,21 +476,21 @@ export class Game {
         break;
       case 2:
         // Three cards in a row
-        cardSize = Math.min(boardWidth * 0.25, boardHeight * 0.65, 280);
+        cardSize = Math.min(boardWidth * 0.28, boardHeight * 0.65, 280);
         break;
       case 3:
         // Deck on top, 3 players below
-        cardSize = Math.min(boardWidth * 0.25, boardHeight * 0.4, 240);
+        cardSize = Math.min(boardWidth * 0.28, boardHeight * 0.42, 240);
         break;
       case 4:
         // Deck in center, 4 players in corners
-        cardSize = Math.min(boardWidth * 0.22, boardHeight * 0.35, 220);
+        cardSize = Math.min(boardWidth * 0.28, boardHeight * 0.38, 220);
         break;
       default:
         cardSize = 280;
     }
 
-    return Math.max(cardSize, 150); // Minimum size
+    return Math.max(cardSize, 120); // Reduced minimum size for mobile
   }
 
   /**
@@ -554,9 +648,18 @@ export class Game {
 
   handleCorrectAnswer(playerIndex) {
     console.log(`✅ Правильна відповідь від Гравця ${playerIndex + 1}`);
-    this.state.correctClicks++;
 
-    this.state.scores[playerIndex].cards++;
+    // Check if move was expired (for single player) - don't count points
+    const countPoints = !this.state.moveExpired;
+
+    if (countPoints) {
+      this.state.correctClicks++;
+      this.state.scores[playerIndex].cards++;
+    } else {
+      console.log('⏰ Move was expired - no points awarded');
+      this.state.wrongClicks++; // Count as wrong
+    }
+
     this.state.playerCards[playerIndex] = this.state.currentCentralCard;
 
     if (this.state.deck.length > 0) {
@@ -567,7 +670,7 @@ export class Game {
     }
 
     this.animateCardTransfer(playerIndex);
-    
+
     setTimeout(() => {
       this.resetRoundState();
       this.renderBoard();
@@ -575,6 +678,11 @@ export class Game {
         this.renderPlayerScoresTop();
       }
       this.updateCardsRemaining();
+
+      // Reset timer for single player
+      if (this.config.players === 1) {
+        this.resetTimer();
+      }
     }, 800);
   }
 
@@ -681,15 +789,19 @@ export class Game {
   }
 
   destroy() {
+    // Stop timer
+    this.stopTimer();
+
     this.eventHandlers.forEach((handler, key) => {
       const [element, event] = key.split(':');
       const el = document.getElementById(element);
       if (el) el.removeEventListener(event, handler);
     });
     this.eventHandlers.clear();
-    
+
     if (this.board) {
       this.board.innerHTML = '';
+      this.board.classList.remove('multiplayer-3', 'multiplayer-4');
     }
   }
 }
