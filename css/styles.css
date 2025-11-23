@@ -355,9 +355,16 @@ body {
 .game-board {
   position: relative;
   width: 100%;
-  height: calc(100vh - 120px);
+  height: calc(100vh - 70px);
   margin: 0 auto;
   flex: 1;
+  padding-top: 5px;
+}
+
+/* Minimal spacing for multiplayer */
+.game-board.multiplayer-3,
+.game-board.multiplayer-4 {
+  padding-top: 5px;
 }
 
 .card-container {
@@ -666,12 +673,12 @@ body {
 /* Планшети (768-1024px) */
 @media (max-width: 1024px) {
   .game-board {
-    height: calc(100vh - 100px);
+    height: calc(100vh - 65px);
   }
-  
+
   :root {
-    --card-size: 260px;
-    --card-size-player: 260px;
+    --card-size: 240px;
+    --card-size-player: 240px;
   }
   
   .game-info {
@@ -703,12 +710,12 @@ body {
 /* Мобільні (max 768px) */
 @media (max-width: 768px) {
   .game-board {
-    height: calc(100vh - 150px);
+    height: calc(100vh - 60px);
   }
-  
+
   :root {
-    --card-size: 220px;
-    --card-size-player: 220px;
+    --card-size: 180px;
+    --card-size-player: 180px;
   }
   
   .game-title {
@@ -760,8 +767,12 @@ body {
 /* Дуже маленькі екрани (max 480px) */
 @media (max-width: 480px) {
   :root {
-    --card-size: 180px;
-    --card-size-player: 180px;
+    --card-size: 140px;
+    --card-size-player: 140px;
+  }
+
+  .game-board {
+    height: calc(100vh - 55px);
   }
   
   .game-info {
@@ -797,4 +808,84 @@ body {
     font-size: 0.85em;
     padding: 8px 10px;
   }
+}
+
+/* ===== TIMER SLIDER ===== */
+.timer-slider-section {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(236, 127, 23, 0.2);
+}
+
+.timer-slider-section.disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.timer-slider-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.timer-slider {
+  flex: 1;
+  -webkit-appearance: none;
+  height: 8px;
+  border-radius: 4px;
+  background: linear-gradient(to right, var(--color-pumpkin), var(--color-tomato));
+  outline: none;
+}
+
+.timer-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: white;
+  border: 3px solid var(--color-pumpkin);
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.timer-slider::-moz-range-thumb {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: white;
+  border: 3px solid var(--color-pumpkin);
+  cursor: pointer;
+}
+
+.timer-value {
+  min-width: 60px;
+  text-align: center;
+  font-weight: bold;
+  color: var(--color-pumpkin);
+  font-size: 1.1em;
+}
+
+/* Timer warning animation */
+.timer.warning {
+  color: var(--color-tomato);
+  animation: timer-pulse 0.5s ease-in-out infinite;
+}
+
+.timer.warning strong {
+  color: var(--color-tomato);
+}
+
+@keyframes timer-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+/* Timer expired */
+.timer.expired {
+  color: #999;
+}
+
+.timer.expired strong {
+  color: #999;
 }

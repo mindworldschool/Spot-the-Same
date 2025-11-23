@@ -48,7 +48,11 @@ export const translations = {
     exitConfirm: "Вийти з гри?",
     correctAnswers: "Правильних відповідей",
     wrongAnswers: "Помилкових",
-    cards: "карт"
+    cards: "карт",
+
+    // Timer
+    moveTime: "Час на хід",
+    timeUp: "Час вийшов!"
   },
 
   en: {
@@ -95,7 +99,11 @@ export const translations = {
     exitConfirm: "Exit game?",
     correctAnswers: "Correct answers",
     wrongAnswers: "Wrong answers",
-    cards: "cards"
+    cards: "cards",
+
+    // Timer
+    moveTime: "Move time",
+    timeUp: "Time's up!"
   },
 
   ru: {
@@ -142,7 +150,11 @@ export const translations = {
     exitConfirm: "Выйти из игры?",
     correctAnswers: "Правильных ответов",
     wrongAnswers: "Ошибок",
-    cards: "карт"
+    cards: "карт",
+
+    // Timer
+    moveTime: "Время на ход",
+    timeUp: "Время вышло!"
   },
 
   es: {
@@ -189,7 +201,11 @@ export const translations = {
     exitConfirm: "¿Salir del juego?",
     correctAnswers: "Respuestas correctas",
     wrongAnswers: "Errores",
-    cards: "cartas"
+    cards: "cartas",
+
+    // Timer
+    moveTime: "Tiempo por turno",
+    timeUp: "¡Se acabó el tiempo!"
   }
 };
 
