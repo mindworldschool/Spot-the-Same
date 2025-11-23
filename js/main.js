@@ -184,7 +184,8 @@ async function startGame() {
     appState.game = new Game({
       players: appState.config.players,
       difficulty: appState.config.difficulty,
-      assets: appState.assets
+      assets: appState.assets,
+      lang: appState.currentLang
     });
     
     // Ініціалізуємо гру

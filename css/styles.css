@@ -398,6 +398,12 @@ body {
   font-weight: bold;
   font-size: 1.1em;
   color: var(--color-moss);
+  background: rgba(255, 255, 255, 0.9);
+  padding: 4px 12px;
+  border-radius: 15px;
+  white-space: nowrap;
+  position: relative;
+  z-index: 10;
 }
 
 /* SVG Symbols */

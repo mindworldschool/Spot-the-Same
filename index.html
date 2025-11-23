@@ -14,7 +14,7 @@
   <div id="loading-screen" class="screen">
     <div class="loading-content">
       <div class="loader"></div>
-      <p class="loading-text">Загрузка...</p>
+      <p class="loading-text" data-i18n="loading">Завантаження...</p>
     </div>
   </div>
 
@@ -77,9 +77,9 @@
     <div class="game-info">
       <!-- Ліворуч: Лічильник карт -->
       <div class="info-left">
-        <span class="cards-remaining">Залишилось: <strong id="cards-remaining">0</strong></span>
+        <span class="cards-remaining"><span data-i18n="cardsRemaining">Залишилось:</span> <strong id="cards-remaining">0</strong></span>
       </div>
-      
+
       <!-- Посередині: Таймер (для 1 гравця) або Панель гравців (для 2-4) -->
       <div class="info-center">
         <span class="timer hidden" id="timer-display">⏱️ <strong>60</strong></span>
@@ -87,11 +87,11 @@
           <!-- Гравці додаються через JS -->
         </div>
       </div>
-      
+
       <!-- Праворуч: Кнопки -->
       <div class="info-right">
-        <button class="btn-icon btn-pause" aria-label="Пауза" title="Пауза">⏸</button>
-        <button class="btn-icon btn-exit" aria-label="Вийти" title="Вийти">✖</button>
+        <button class="btn-icon btn-pause" aria-label="Пауза" data-i18n-title="pause">⏸</button>
+        <button class="btn-icon btn-exit" aria-label="Вийти" data-i18n-title="exit">✖</button>
       </div>
     </div>
 
@@ -104,20 +104,20 @@
   <!-- Экран результатов -->
   <div id="results-screen" class="screen hidden">
     <div class="results-content">
-      <h2 class="results-title">Игра окончена!</h2>
-      
+      <h2 class="results-title" data-i18n="gameOver">Гра закінчена!</h2>
+
       <!-- Результаты для 1 игрока -->
       <div class="solo-results hidden" id="solo-results">
         <div class="stat-card">
-          <span class="stat-label">Собрано карт</span>
+          <span class="stat-label" data-i18n="collectedCards">Зібрано карт</span>
           <span class="stat-value" id="solo-cards">0</span>
         </div>
         <div class="stat-card">
-          <span class="stat-label">Время</span>
+          <span class="stat-label" data-i18n="time">Час</span>
           <span class="stat-value" id="solo-time">0:00</span>
         </div>
         <div class="stat-card">
-          <span class="stat-label">Точность</span>
+          <span class="stat-label" data-i18n="accuracy">Точність</span>
           <span class="stat-value" id="solo-accuracy">100%</span>
         </div>
       </div>
@@ -130,8 +130,8 @@
       </div>
 
       <div class="results-actions">
-        <button class="btn-primary btn-play-again">Играть снова</button>
-        <button class="btn-secondary btn-menu">В меню</button>
+        <button class="btn-primary btn-play-again" data-i18n="playAgain">Грати знову</button>
+        <button class="btn-secondary btn-menu" data-i18n="toMenu">В меню</button>
       </div>
     </div>
   </div>
@@ -139,9 +139,9 @@
   <!-- Модальное окно паузы -->
   <div id="pause-modal" class="modal hidden">
     <div class="modal-content">
-      <h3>Пауза</h3>
-      <button class="btn-primary btn-resume">Продолжить</button>
-      <button class="btn-secondary btn-exit-game">Выйти в меню</button>
+      <h3 data-i18n="pauseTitle">Пауза</h3>
+      <button class="btn-primary btn-resume" data-i18n="resume">Продовжити</button>
+      <button class="btn-secondary btn-exit-game" data-i18n="exitToMenu">Вийти в меню</button>
     </div>
   </div>
 

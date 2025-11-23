@@ -42,9 +42,15 @@ export const translations = {
     toMenu: "В меню",
     
     // Loading
-    loading: "Завантаження..."
+    loading: "Завантаження...",
+
+    // Confirmations
+    exitConfirm: "Вийти з гри?",
+    correctAnswers: "Правильних відповідей",
+    wrongAnswers: "Помилкових",
+    cards: "карт"
   },
-  
+
   en: {
     // Header
     gameTitle: "Spot the Same",
@@ -83,9 +89,15 @@ export const translations = {
     toMenu: "To Menu",
     
     // Loading
-    loading: "Loading..."
+    loading: "Loading...",
+
+    // Confirmations
+    exitConfirm: "Exit game?",
+    correctAnswers: "Correct answers",
+    wrongAnswers: "Wrong answers",
+    cards: "cards"
   },
-  
+
   ru: {
     // Header
     gameTitle: "Найди Одинаковое",
@@ -124,9 +136,15 @@ export const translations = {
     toMenu: "В меню",
     
     // Loading
-    loading: "Загрузка..."
+    loading: "Загрузка...",
+
+    // Confirmations
+    exitConfirm: "Выйти из игры?",
+    correctAnswers: "Правильных ответов",
+    wrongAnswers: "Ошибок",
+    cards: "карт"
   },
-  
+
   es: {
     // Header
     gameTitle: "Encuentra el Mismo",
@@ -165,7 +183,13 @@ export const translations = {
     toMenu: "Al Menú",
     
     // Loading
-    loading: "Cargando..."
+    loading: "Cargando...",
+
+    // Confirmations
+    exitConfirm: "¿Salir del juego?",
+    correctAnswers: "Respuestas correctas",
+    wrongAnswers: "Errores",
+    cards: "cartas"
   }
 };
 
@@ -186,15 +210,33 @@ export function detectLanguage() {
   if (urlLang && translations[urlLang]) {
     return urlLang;
   }
-  
-  // 2. Спробувати визначити з мови браузера
+
+  // 2. Спробувати визначити з referrer URL
+  const referrer = document.referrer.toLowerCase();
+  if (referrer) {
+    // Check for language indicators in referrer URL
+    if (referrer.includes('/ua/') || referrer.includes('/uk/') || referrer.includes('.ua/') || referrer.includes('lang=ua') || referrer.includes('lang=uk')) {
+      return 'ua';
+    }
+    if (referrer.includes('/en/') || referrer.includes('.com/') || referrer.includes('lang=en')) {
+      return 'en';
+    }
+    if (referrer.includes('/ru/') || referrer.includes('.ru/') || referrer.includes('lang=ru')) {
+      return 'ru';
+    }
+    if (referrer.includes('/es/') || referrer.includes('.es/') || referrer.includes('lang=es')) {
+      return 'es';
+    }
+  }
+
+  // 3. Спробувати визначити з мови браузера
   const browserLang = navigator.language.toLowerCase();
-  
+
   if (browserLang.startsWith('uk')) return 'ua';
   if (browserLang.startsWith('ru')) return 'ru';
   if (browserLang.startsWith('es')) return 'es';
   if (browserLang.startsWith('en')) return 'en';
-  
-  // 3. За замовчуванням українська
+
+  // 4. За замовчуванням українська
   return 'ua';
 }

@@ -10,10 +10,12 @@
 
 import { loadDeckSymbols } from './assets-loader.js';
 import { CardRenderer } from './card-renderer.js';
+import { t } from './translations.js';
 
 export class Game {
   constructor(config) {
     this.config = config;
+    this.lang = config.lang || 'ua';
     this.state = {
       players: config.players,
       difficulty: config.difficulty,
@@ -34,7 +36,7 @@ export class Game {
         clickedPlayers: []
       }
     };
-    
+
     this.assets = config.assets;
     this.board = null;
     this.renderer = new CardRenderer();
@@ -60,7 +62,7 @@ export class Game {
       playerIndex: i,
       cards: 1,
       color: this.getPlayerColor(i),
-      name: `Гравець ${i + 1}`
+      name: `${t('player', this.lang)} ${i + 1}`
     }));
 
     this.dealInitialCards();
@@ -125,11 +127,11 @@ export class Game {
    * Гравець - Центр (в ряд, однаковий розмір)
    */
   renderOnePlayerLayout() {
-    const cardSize = 320; // Великі карти (збільшено з 300)
-    
+    const cardSize = this.calculateCardSize();
+
     // Гравець (ліворуч)
     this.renderPlayerCardAt(0, 35, 50, cardSize);
-    
+
     // Центр (праворуч)
     this.renderCentralCardAt(65, 50, cardSize);
   }
@@ -139,14 +141,14 @@ export class Game {
    * Гравець 1 - Центр - Гравець 2 (в ряд)
    */
   renderTwoPlayersLayout() {
-    const cardSize = 320; // Збільшено з 300
-    
+    const cardSize = this.calculateCardSize();
+
     // Гравець 1 (ліворуч)
     this.renderPlayerCardAt(0, 20, 50, cardSize);
-    
+
     // Центр (посередині)
     this.renderCentralCardAt(50, 50, cardSize);
-    
+
     // Гравець 2 (праворуч)
     this.renderPlayerCardAt(1, 80, 50, cardSize);
   }
@@ -230,7 +232,7 @@ export class Game {
 
     const label = document.createElement('div');
     label.className = 'card-label';
-    label.textContent = `Колода (${this.state.deck.length})`;
+    label.textContent = `${t('deck', this.lang)} (${this.state.deck.length})`;
 
     container.appendChild(cardDiv);
     container.appendChild(label);
@@ -241,13 +243,14 @@ export class Game {
    * Стандартний рендер центральної карти (для 3-4 гравців)
    */
   renderCentralCard() {
+    const cardSize = this.calculateCardSize();
     const container = document.createElement('div');
     container.className = 'card-container central-card';
-    
+
     if (this.config.players === 3) {
       container.style.cssText = `
         left: 50%;
-        top: 15%;
+        top: 22%;
         transform: translate(-50%, 0);
       `;
     } else if (this.config.players === 4) {
@@ -261,21 +264,25 @@ export class Game {
     const cardDiv = document.createElement('div');
     cardDiv.className = 'card central';
     cardDiv.dataset.cardType = 'central';
+    cardDiv.style.cssText = `
+      width: ${cardSize}px;
+      height: ${cardSize}px;
+    `;
 
     const svg = this.renderer.render(
       this.state.currentCentralCard,
       this.assets,
       {
-        size: 320,
+        size: cardSize,
         onSymbolClick: (symbolId) => this.handleCentralCardClick(symbolId)
       }
     );
-    
+
     cardDiv.appendChild(svg);
 
     const label = document.createElement('div');
     label.className = 'card-label';
-    label.textContent = `Колода (${this.state.deck.length})`;
+    label.textContent = `${t('deck', this.lang)} (${this.state.deck.length})`;
 
     container.appendChild(cardDiv);
     container.appendChild(label);
@@ -287,7 +294,8 @@ export class Game {
    */
   renderPlayerCards() {
     const positions = this.getPlayerPositions();
-    
+    const cardSize = this.calculateCardSize();
+
     this.state.playerCards.forEach((card, index) => {
       const container = document.createElement('div');
       container.className = 'card-container player-card';
@@ -301,6 +309,10 @@ export class Game {
       cardDiv.className = 'card player';
       cardDiv.dataset.playerId = index + 1;
       cardDiv.dataset.playerIndex = index;
+      cardDiv.style.cssText = `
+        width: ${cardSize}px;
+        height: ${cardSize}px;
+      `;
 
       const playerColor = this.state.scores[index].color;
       cardDiv.style.boxShadow = `0 0 0 4px ${playerColor}40`;
@@ -309,11 +321,11 @@ export class Game {
         card,
         this.assets,
         {
-          size: 320,
+          size: cardSize,
           onSymbolClick: (symbolId) => this.handlePlayerCardClick(index, symbolId)
         }
       );
-      
+
       cardDiv.appendChild(svg);
 
       const label = document.createElement('div');
@@ -332,25 +344,59 @@ export class Game {
    */
   getPlayerPositions() {
     const numPlayers = this.config.players;
-    
+
     if (numPlayers === 3) {
       return [
-        { x: 20, y: 75 },
-        { x: 50, y: 75 },
-        { x: 80, y: 75 }
+        { x: 20, y: 70 },
+        { x: 50, y: 70 },
+        { x: 80, y: 70 }
       ];
     }
-    
+
     if (numPlayers === 4) {
       return [
-        { x: 15, y: 30 },
-        { x: 15, y: 70 },
-        { x: 85, y: 30 },
-        { x: 85, y: 70 }
+        { x: 18, y: 35 },
+        { x: 18, y: 72 },
+        { x: 82, y: 35 },
+        { x: 82, y: 72 }
       ];
     }
-    
+
     return [];
+  }
+
+  /**
+   * Calculate card size based on number of players and viewport
+   */
+  calculateCardSize() {
+    const board = this.board;
+    const boardWidth = board.clientWidth || window.innerWidth;
+    const boardHeight = board.clientHeight || (window.innerHeight - 120);
+
+    let cardSize;
+
+    switch (this.config.players) {
+      case 1:
+        // Two cards side by side
+        cardSize = Math.min(boardWidth * 0.35, boardHeight * 0.7, 320);
+        break;
+      case 2:
+        // Three cards in a row
+        cardSize = Math.min(boardWidth * 0.25, boardHeight * 0.65, 280);
+        break;
+      case 3:
+        // Deck on top, 3 players below
+        cardSize = Math.min(boardWidth * 0.25, boardHeight * 0.4, 240);
+        break;
+      case 4:
+        // Deck in center, 4 players in corners
+        cardSize = Math.min(boardWidth * 0.22, boardHeight * 0.35, 220);
+        break;
+      default:
+        cardSize = 280;
+    }
+
+    return Math.max(cardSize, 150); // Minimum size
   }
 
   /**
