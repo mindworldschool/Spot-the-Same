@@ -1,12 +1,12 @@
 /**
- * Translations for Spot the Same
+ * Translations for Find it First
  * Supported languages: UA, EN, RU, ES
  */
 
 export const translations = {
   ua: {
     // Header
-    gameTitle: "Знайди Однакове",
+    gameTitle: "Знайди Перше",
     gameSubtitle: "MindWorld School",
     
     // Menu
@@ -59,7 +59,7 @@ export const translations = {
 
   en: {
     // Header
-    gameTitle: "Spot the Same",
+    gameTitle: "Find it First",
     gameSubtitle: "MindWorld School",
     
     // Menu
@@ -112,7 +112,7 @@ export const translations = {
 
   ru: {
     // Header
-    gameTitle: "Найди Одинаковое",
+    gameTitle: "Найди Первым",
     gameSubtitle: "MindWorld School",
     
     // Menu
@@ -165,7 +165,7 @@ export const translations = {
 
   es: {
     // Header
-    gameTitle: "Encuentra el Mismo",
+    gameTitle: "Encuéntralo Primero",
     gameSubtitle: "MindWorld School",
     
     // Menu

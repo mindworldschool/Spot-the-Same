@@ -285,6 +285,17 @@ export class Game {
 
     const label = document.createElement('div');
     label.className = 'card-label';
+
+    // Apply vertical label if card is positioned too low (y > 60%)
+    if (y > 60) {
+      // Position label to the left for left-side cards (x < 50%), right for right-side cards
+      if (x < 50) {
+        label.classList.add('vertical-left');
+      } else {
+        label.classList.add('vertical-right');
+      }
+    }
+
     label.style.color = playerColor;
     label.textContent = this.state.scores[index].name;
 
@@ -424,6 +435,17 @@ export class Game {
 
       const label = document.createElement('div');
       label.className = 'card-label';
+
+      // Apply vertical label if card is positioned too low (y > 60%)
+      if (positions[index].y > 60) {
+        // Position label to the left for left-side cards (x < 50%), right for right-side cards
+        if (positions[index].x < 50) {
+          label.classList.add('vertical-left');
+        } else {
+          label.classList.add('vertical-right');
+        }
+      }
+
       label.style.color = playerColor;
       label.textContent = this.state.scores[index].name;
 

@@ -1,4 +1,4 @@
-/* ===== SPOT THE SAME - MindWorld School v2.4 ===== */
+/* ===== FIND IT FIRST - MindWorld School v2.4 ===== */
 
 :root {
   --color-ivory: #FFFEF5;
@@ -40,7 +40,7 @@ body {
 }
 
 .header-logo {
-  flex: 0 0 auto;
+  flex: 1;
   display: flex;
   align-items: center;
 }
@@ -57,9 +57,10 @@ body {
 }
 
 .header-lang {
-  flex: 0 0 auto;
+  flex: 1;
   display: flex;
   align-items: center;
+  justify-content: flex-end;
 }
 
 /* Мовна капсула */
@@ -411,6 +412,25 @@ body {
   white-space: nowrap;
   position: relative;
   z-index: 10;
+}
+
+/* Vertical label positioning */
+.card-label.vertical-left {
+  position: absolute;
+  left: -45px;
+  top: 50%;
+  transform: translateY(-50%) rotate(-90deg);
+  margin-top: 0;
+  transform-origin: center;
+}
+
+.card-label.vertical-right {
+  position: absolute;
+  right: -45px;
+  top: 50%;
+  transform: translateY(-50%) rotate(90deg);
+  margin-top: 0;
+  transform-origin: center;
 }
 
 /* SVG Symbols */
