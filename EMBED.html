@@ -1,0 +1,128 @@
+<!-- Find it First — Fullscreen Embed with Auto Language -->
+<!--
+  This is the correct embed code to use on your website.
+  It detects language from:
+  1. URL path (e.g., /en/finditfirst)
+  2. HTML lang attribute
+  3. Browser language
+  4. Defaults to Ukrainian
+-->
+
+<div id="findit-wrapper" style="
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  max-width: 1920px;
+  margin: 0 auto;
+  overflow: hidden;
+  background-color: #EC8D00;
+">
+  <iframe
+    id="findit-iframe"
+    src=""
+    style="
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    "
+    loading="lazy"
+    allow="fullscreen"
+    referrerpolicy="no-referrer">
+  </iframe>
+</div>
+
+<style>
+@media (max-width: 768px) {
+  #findit-wrapper {
+    height: 100dvh;
+  }
+}
+</style>
+
+<script>
+(function () {
+  // ====== 1. Пытаемся определить язык из URL пути родительской страницы ======
+  var currentPath = window.location.pathname.toLowerCase();
+  var lang = '';
+
+  console.log('🌍 [Find it First Embed] Checking current path:', currentPath);
+
+  // Проверяем путь на наличие языковых префиксов
+  if (currentPath.includes('/en/') || currentPath.includes('/english/')) {
+    lang = 'en';
+    console.log('🌍 [Find it First Embed] Language detected from URL path: en');
+  } else if (currentPath.includes('/ru/') || currentPath.includes('/russian/')) {
+    lang = 'ru';
+    console.log('🌍 [Find it First Embed] Language detected from URL path: ru');
+  } else if (currentPath.includes('/es/') || currentPath.includes('/spanish/')) {
+    lang = 'es';
+    console.log('🌍 [Find it First Embed] Language detected from URL path: es');
+  }
+
+  // ====== 2. Если не нашли в пути, пытаемся определить из атрибута lang ======
+  if (!lang) {
+    var htmlLang = document.documentElement.lang || '';
+    htmlLang = htmlLang.toLowerCase();
+
+    console.log('🌍 [Find it First Embed] HTML lang attribute:', htmlLang);
+
+    if (htmlLang.includes('uk') || htmlLang.includes('ua')) {
+      lang = 'ua';
+      console.log('🌍 [Find it First Embed] Language detected from HTML lang: ua');
+    } else if (htmlLang.includes('en')) {
+      lang = 'en';
+      console.log('🌍 [Find it First Embed] Language detected from HTML lang: en');
+    } else if (htmlLang.includes('ru')) {
+      lang = 'ru';
+      console.log('🌍 [Find it First Embed] Language detected from HTML lang: ru');
+    } else if (htmlLang.includes('es')) {
+      lang = 'es';
+      console.log('🌍 [Find it First Embed] Language detected from HTML lang: es');
+    }
+  }
+
+  // ====== 3. Если не нашли, пытаемся определить из языка браузера ======
+  if (!lang) {
+    var browserLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
+    console.log('🌍 [Find it First Embed] Browser language:', browserLang);
+
+    if (browserLang.startsWith('uk') || browserLang.startsWith('ua')) {
+      lang = 'ua';
+      console.log('🌍 [Find it First Embed] Language detected from browser: ua');
+    } else if (browserLang.startsWith('en')) {
+      lang = 'en';
+      console.log('🌍 [Find it First Embed] Language detected from browser: en');
+    } else if (browserLang.startsWith('ru')) {
+      lang = 'ru';
+      console.log('🌍 [Find it First Embed] Language detected from browser: ru');
+    } else if (browserLang.startsWith('es')) {
+      lang = 'es';
+      console.log('🌍 [Find it First Embed] Language detected from browser: es');
+    }
+  }
+
+  // ====== 4. По умолчанию украинский ======
+  if (!lang) {
+    lang = 'ua';
+    console.log('🌍 [Find it First Embed] Using default language: ua');
+  }
+
+  // ====== 5. Формируем URL игры с параметром языка ======
+  var gameBaseURL = "https://mindworldschool.github.io/Find-it-First/";
+  var finalURL = gameBaseURL + "?lang=" + lang;
+
+  console.log('🌍 [Find it First Embed] Final game URL:', finalURL);
+
+  // ====== 6. Устанавливаем src iframe ======
+  var iframeElement = document.getElementById("findit-iframe");
+  if (iframeElement) {
+    iframeElement.src = finalURL;
+  } else {
+    console.error('❌ [Find it First Embed] iframe element not found!');
+  }
+})();
+</script>
